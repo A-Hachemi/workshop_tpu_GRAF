@@ -11,7 +11,7 @@ module pe (
     input  wire [`DATA_WIDTH-1:0] b_in,     // Input B from the top
     output wire [`DATA_WIDTH-1:0] a_out,    // Pass A to the right
     output wire [`DATA_WIDTH-1:0] b_out,    // Pass B to the bottom
-    output wire [`ACC_WIDTH-1:0]  c_out     // Accumulated result
+    output wire [`ACC_WIDTH*2-1:0]  c_out     // Accumulated result
 );
 
     // Internal registers to store current A and B values
