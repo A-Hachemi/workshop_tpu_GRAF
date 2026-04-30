@@ -15,24 +15,20 @@ module pe (
 );
 
     // Internal registers to store current A and B values
-    reg [`DATA_WIDTH-1:0] a_reg, b_reg;
-    reg [`ACC_WIDTH-1:0]  c_reg;
+    reg [`ACC_WIDTH*2-1:0]  c_reg;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin           // Reset
-            a_reg <= 0;             // Reset A register
-            b_reg <= 0;             // Reset B register
             c_reg <= 0;             // Reset accumulation register
         end else if (we) begin      // Update only when we = 1
-            a_reg <= a_in;          // Store the input A value
-            b_reg <= b_in;          // Store the input B value
+
             c_reg <= c_reg + a_in * b_in;  // Perform multiply-accumulate operation
         end
     end
 
     // Pass values
-    assign a_out = a_reg;
-    assign b_out = b_reg;
+    assign a_out = a_in;
+    assign b_out = b_in;
     // Output
     assign c_out = c_reg;
 
